@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Suraj Patel — Data Science Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy: #0f1f38; --navy-mid: #1a3254; --accent: #c8873a; --accent-light: #e8a85a;
+      --cream: #f7f4ef; --text: #1e1e1e; --muted: #6b7280; --border: #e2ddd6;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--text); line-height: 1.6; }
+
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(247,244,239,0.92); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 60px; }
+    .nav-logo { font-family: 'DM Serif Display', serif; font-size: 1.25rem; color: var(--navy); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { text-decoration: none; font-size: 0.85rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); transition: color 0.2s; }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* HERO */
+    .hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; align-items: center; padding: 80px 6rem 4rem; gap: 4rem; position: relative; overflow: hidden; }
+    .hero::before { content: ''; position: absolute; top: -100px; right: -100px; width: 500px; height: 500px; background: radial-gradient(circle, rgba(200,135,58,0.12) 0%, transparent 70%); pointer-events: none; }
+
+    .hero-left { display: flex; flex-direction: column; align-items: flex-start; }
+    .hero-photo-wrap { margin-bottom: 2rem; }
+    .hero-photo {
+      width: 120px; height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid var(--accent);
+      box-shadow: 0 8px 32px rgba(200,135,58,0.25);
+    }
+    .hero-label { display: inline-block; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.25rem; padding: 0.3rem 0.9rem; border: 1px solid var(--accent); border-radius: 20px; }
+    .hero h1 { font-family: 'DM Serif Display', serif; font-size: clamp(2.8rem, 5vw, 4.5rem); line-height: 1.1; color: var(--navy); margin-bottom: 1.5rem; }
+    .hero h1 em { font-style: italic; color: var(--accent); }
+    .hero-desc { font-size: 1.05rem; color: var(--muted); max-width: 480px; margin-bottom: 2.5rem; line-height: 1.8; }
+    .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-primary { background: var(--navy); color: #fff; padding: 0.8rem 2rem; border-radius: 6px; text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: background 0.2s, transform 0.15s; }
+    .btn-primary:hover { background: var(--navy-mid); transform: translateY(-2px); }
+    .btn-outline { border: 1.5px solid var(--navy); color: var(--navy); padding: 0.8rem 2rem; border-radius: 6px; text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: all 0.2s; }
+    .btn-outline:hover { background: var(--navy); color: #fff; transform: translateY(-2px); }
+
+    .hero-right { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+    .stat-card { background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; box-shadow: 0 2px 12px rgba(0,0,0,0.05); transition: transform 0.2s, box-shadow 0.2s; }
+    .stat-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.09); }
+    .stat-card:first-child { grid-column: 1 / -1; background: var(--navy); color: #fff; }
+    .stat-icon { font-size: 1.5rem; margin-bottom: 0.75rem; }
+    .stat-number { font-family: 'DM Serif Display', serif; font-size: 2.2rem; color: var(--accent); line-height: 1; }
+    .stat-card:first-child .stat-number { color: var(--accent-light); }
+    .stat-label { font-size: 0.8rem; color: var(--muted); margin-top: 0.3rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; }
+    .stat-card:first-child .stat-label { color: rgba(255,255,255,0.6); }
+    .stat-desc { font-size: 0.9rem; margin-top: 0.5rem; color: rgba(255,255,255,0.85); line-height: 1.5; }
+
+    section { padding: 6rem 6rem; }
+    .section-tag { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem; }
+    .section-title { font-family: 'DM Serif Display', serif; font-size: clamp(2rem, 3vw, 2.8rem); color: var(--navy); margin-bottom: 1rem; }
+    .section-sub { color: var(--muted); max-width: 560px; line-height: 1.8; margin-bottom: 3rem; font-size: 1rem; }
+    .divider { width: 48px; height: 3px; background: var(--accent); margin-bottom: 1.5rem; border-radius: 2px; }
+
+    #skills { background: var(--navy); }
+    #skills .section-title { color: #fff; }
+    #skills .section-sub { color: rgba(255,255,255,0.6); }
+    #skills .section-tag { color: var(--accent-light); }
+    #skills .divider { background: var(--accent-light); }
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; }
+    .skill-pill { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: 10px; padding: 1.25rem 1.5rem; display: flex; align-items: center; gap: 1rem; transition: background 0.2s, border-color 0.2s; }
+    .skill-pill:hover { background: rgba(200,135,58,0.15); border-color: var(--accent); }
+    .skill-icon { font-size: 1.4rem; }
+    .skill-name { font-size: 0.9rem; font-weight: 500; color: #fff; }
+    .skill-level { font-size: 0.75rem; color: rgba(255,255,255,0.45); margin-top: 0.15rem; }
+
+    #experience { background: #fff; }
+    .exp-card { border: 1px solid var(--border); border-radius: 14px; padding: 2rem 2.5rem; margin-bottom: 1.5rem; display: grid; grid-template-columns: auto 1fr; gap: 1.5rem 2rem; transition: box-shadow 0.2s, transform 0.2s; }
+    .exp-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.07); transform: translateY(-3px); }
+    .exp-logo { width: 52px; height: 52px; background: var(--navy); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; flex-shrink: 0; }
+    .exp-body { grid-column: 2; }
+    .exp-title { font-size: 1.1rem; font-weight: 600; color: var(--navy); }
+    .exp-company { color: var(--accent); font-weight: 500; font-size: 0.95rem; }
+    .exp-date { font-size: 0.8rem; color: var(--muted); margin-top: 0.2rem; }
+    .exp-bullets { margin-top: 0.75rem; padding-left: 1.2rem; }
+    .exp-bullets li { font-size: 0.92rem; color: #444; line-height: 1.7; margin-bottom: 0.4rem; }
+    .exp-tags { margin-top: 1rem; display: flex; gap: 0.5rem; flex-wrap: wrap; }
+    .tag { font-size: 0.75rem; font-weight: 500; padding: 0.25rem 0.75rem; border-radius: 20px; background: var(--cream); color: var(--navy); border: 1px solid var(--border); }
+
+    #projects { background: var(--cream); }
+    .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.5rem; }
+    .project-card { background: #fff; border: 1px solid var(--border); border-radius: 14px; padding: 2rem; transition: transform 0.2s, box-shadow 0.2s; position: relative; overflow: hidden; }
+    .project-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--accent), var(--accent-light)); }
+    .project-card:hover { transform: translateY(-5px); box-shadow: 0 12px 40px rgba(0,0,0,0.1); }
+    .project-icon { font-size: 2rem; margin-bottom: 1rem; }
+    .project-title { font-family: 'DM Serif Display', serif; font-size: 1.3rem; color: var(--navy); margin-bottom: 0.5rem; }
+    .project-desc { font-size: 0.92rem; color: var(--muted); line-height: 1.7; margin-bottom: 1.25rem; }
+    .project-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+
+    #about { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%); color: #fff; text-align: center; }
+    #about .section-title { color: #fff; }
+    #about .section-sub { color: rgba(255,255,255,0.65); margin: 0 auto 2.5rem; }
+    #about .divider { margin: 0 auto 1.5rem; }
+    #about .section-tag { color: var(--accent-light); }
+    .contact-row { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .contact-btn { display: flex; align-items: center; gap: 0.5rem; padding: 0.85rem 1.8rem; border-radius: 8px; font-size: 0.9rem; font-weight: 500; text-decoration: none; transition: all 0.2s; }
+    .contact-btn.light { background: #fff; color: var(--navy); }
+    .contact-btn.light:hover { background: var(--cream); transform: translateY(-2px); }
+    .contact-btn.outline { border: 1.5px solid rgba(255,255,255,0.4); color: #fff; }
+    .contact-btn.outline:hover { background: rgba(255,255,255,0.1); transform: translateY(-2px); }
+
+    footer { background: #0a1626; color: rgba(255,255,255,0.4); text-align: center; padding: 2rem; font-size: 0.82rem; }
+
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+    .hero-left > * { animation: fadeUp 0.6s ease both; }
+    .hero-photo-wrap { animation-delay: 0.05s; }
+    .hero-label { animation-delay: 0.1s; } .hero h1 { animation-delay: 0.2s; }
+    .hero-desc { animation-delay: 0.3s; } .hero-cta { animation-delay: 0.4s; }
+    .hero-right { animation: fadeUp 0.7s 0.3s ease both; }
+
+    @media (max-width: 900px) { .hero { grid-template-columns: 1fr; padding: 80px 2rem 4rem; } .hero-right { grid-template-columns: 1fr 1fr; } section { padding: 4rem 2rem; } }
+    @media (max-width: 600px) { nav { padding: 0 1rem; } .nav-links { gap: 1rem; } .hero-right { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Suraj Patel</div>
+  <ul class="nav-links">
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#about">Contact</a></li>
+  </ul>
+</nav>
+
+<section class="hero" id="home">
+  <div class="hero-left">
+    <div class="hero-photo-wrap">
+      <img src="photo.jpg" alt="Suraj Patel" class="hero-photo" />
+    </div>
+    <div class="hero-label">Accounting & Data Professional</div>
+    <h1>Suraj<br><em>Patel</em></h1>
+    <p class="hero-desc">
+      CPA Candidate with 3+ years in financial reporting, data systems, and analytics. Experienced in turning complex financial data into clear, actionable insights.
+    </p>
+    <div class="hero-cta">
+      <a href="#projects" class="btn-primary">View Projects</a>
+      <a href="#about" class="btn-outline">Get In Touch</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="stat-card">
+      <div class="stat-icon">🎓</div>
+      <div class="stat-number">B.S.</div>
+      <div class="stat-label">Accounting · UT Dallas · 2021</div>
+      <div class="stat-desc">Strong foundation in financial analysis, GAAP, and business information systems.</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon">📊</div>
+      <div class="stat-number">3+</div>
+      <div class="stat-label">Years Experience</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon">📋</div>
+      <div class="stat-number">CPA</div>
+      <div class="stat-label">Candidate · FAR Scheduled</div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="section-tag">Technical Toolkit</div>
+  <div class="section-title">Skills & Tools</div>
+  <div class="divider"></div>
+  <p class="section-sub">A toolkit spanning data analysis, financial software, and programming — built through hands-on professional experience.</p>
+  <div class="skills-grid">
+    <div class="skill-pill"><div class="skill-icon">🐍</div><div><div class="skill-name">Python</div><div class="skill-level">Data Analysis · Modeling</div></div></div>
+    <div class="skill-pill"><div class="skill-icon">🗄️</div><div><div class="skill-name">SQL</div><div class="skill-level">Queries · Data Retrieval</div></div></div>
+    <div class="skill-pill"><div class="skill-icon">📗</div><div><div class="skill-name">Excel</div><div class="skill-level">Advanced · Pivot Tables · Modeling</div></div></div>
+    <div class="skill-pill"><div class="skill-icon">🏢</div><div><div class="skill-name">Yardi Voyager</div><div class="skill-level">Real Estate ERP</div></div></div>
+    <div class="skill-pill"><div class="skill-icon">📒</div><div><div class="skill-name">QuickBooks</div><div class="skill-level">Certified</div></div></div>
+    <div class="skill-pill"><div class="skill-icon">📑</div><div><div class="skill-name">GAAP & Reporting</div><div class="skill-level">GL · Reconciliation · Journal Entries</div></div></div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="section-tag">Work History</div>
+  <div class="section-title">Experience</div>
+  <div class="divider"></div>
+  <p class="section-sub">Three years across accounting, tax, and financial systems — with a consistent focus on data accuracy and insight.</p>
+
+  <div class="exp-card">
+    <div class="exp-logo">🏗️</div>
+    <div class="exp-body">
+      <div class="exp-title">Technical Account Manager</div>
+      <div class="exp-company">Yardi Systems · Dallas, TX</div>
+      <div class="exp-date">Aug 2022 – Sep 2025</div>
+      <ul class="exp-bullets">
+        <li>Performed GL review and account reconciliation for hundreds of real estate client portfolios across AP/AR and bank reconciliation modules.</li>
+        <li>Prepared monthly financial reports, analyzing variances and delivering insights to support client decision-making.</li>
+        <li>Served as Subject Matter Expert for cross-module reporting issues, saving the team ~3 hours per week in troubleshooting.</li>
+        <li>Identified system-wide patterns in recurring issues, contributing to process improvement initiatives across the team.</li>
+      </ul>
+      <div class="exp-tags">
+        <span class="tag">Yardi Voyager</span><span class="tag">GL Reconciliation</span><span class="tag">Financial Reporting</span><span class="tag">AP/AR</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="exp-card">
+    <div class="exp-logo">🏛️</div>
+    <div class="exp-body">
+      <div class="exp-title">Tax Associate</div>
+      <div class="exp-company">RSM US LLP · Dallas, TX</div>
+      <div class="exp-date">Jan 2022 – Aug 2022</div>
+      <ul class="exp-bullets">
+        <li>Prepared 20 S-Corporation and partnership tax returns during busy season under tight deadlines.</li>
+        <li>Assisted with year-end close, reviewing financial statements, K-1s, and general ledgers for accuracy.</li>
+        <li>Researched partnership allocations and state filing requirements to resolve balance sheet discrepancies.</li>
+      </ul>
+      <div class="exp-tags">
+        <span class="tag">Tax Returns</span><span class="tag">GAAP</span><span class="tag">Financial Statements</span><span class="tag">K-1s</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="exp-card">
+    <div class="exp-logo">💼</div>
+    <div class="exp-body">
+      <div class="exp-title">Freelance Tax Consultant</div>
+      <div class="exp-company">Self-Employed · Dallas, TX</div>
+      <div class="exp-date">2021 – Present</div>
+      <ul class="exp-bullets">
+        <li>Compiled tax documentation for family-owned LLCs including K-1s, investment statements, and income records.</li>
+        <li>Built a custom Excel model to consolidate data across multiple entities and calculate estimated tax liability.</li>
+      </ul>
+      <div class="exp-tags">
+        <span class="tag">Excel Modeling</span><span class="tag">Tax Consulting</span><span class="tag">LLC Accounting</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="exp-card">
+    <div class="exp-logo">🎓</div>
+    <div class="exp-body">
+      <div class="exp-title">B.S. in Accounting</div>
+      <div class="exp-company">The University of Texas at Dallas</div>
+      <div class="exp-date">Graduated May 2021 · Dallas, TX</div>
+      <div class="exp-tags">
+        <span class="tag">Financial Analysis</span><span class="tag">Auditing</span><span class="tag">Business Statistics</span><span class="tag">GAAP</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="section-tag">Work Samples</div>
+  <div class="section-title">Projects</div>
+  <div class="divider"></div>
+  <p class="section-sub">Hands-on projects demonstrating applied data and financial modeling skills.</p>
+  <div class="projects-grid">
+    <div class="project-card">
+      <div class="project-icon">🏘️</div>
+      <div class="project-title">DFW Real Estate Market Analysis</div>
+      <div class="project-desc">
+        Analyzed public housing data across the Dallas/Fort Worth metro using Python to identify price trends, vacancy patterns, and neighborhood-level investment signals. Visualized findings with charts and summary statistics to make the data actionable.
+      </div>
+      <div class="project-tags"><span class="tag">Python</span><span class="tag">Pandas</span><span class="tag">Real Estate</span><span class="tag">Data Viz</span></div>
+    </div>
+    <div class="project-card">
+      <div class="project-icon">🔍</div>
+      <div class="project-title">Python Data Analysis Model</div>
+      <div class="project-desc">
+        Built a data analysis model in Python to explore, clean, and derive insights from a structured dataset. Applied statistical techniques and visualization to communicate findings clearly.
+      </div>
+      <div class="project-tags"><span class="tag">Python</span><span class="tag">Pandas</span><span class="tag">Data Analysis</span></div>
+    </div>
+    <div class="project-card">
+      <div class="project-icon">📊</div>
+      <div class="project-title">Multi-Entity Tax Liability Model</div>
+      <div class="project-desc">
+        Designed a custom Excel model to consolidate financial data across multiple LLCs, calculate estimated tax liability, and provide year-end visibility for family-owned businesses.
+      </div>
+      <div class="project-tags"><span class="tag">Excel</span><span class="tag">Financial Modeling</span><span class="tag">Tax</span></div>
+    </div>
+    <div class="project-card">
+      <div class="project-icon">🗄️</div>
+      <div class="project-title">Client Reporting & Diagnostics</div>
+      <div class="project-desc">
+        Developed standardized diagnostic protocols at Yardi to identify system-wide data issues, cutting weekly troubleshooting time by ~3 hours and improving reporting accuracy across portfolios.
+      </div>
+      <div class="project-tags"><span class="tag">SQL</span><span class="tag">Yardi</span><span class="tag">Process Improvement</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="section-tag">Get In Touch</div>
+  <div class="section-title">Let's Connect</div>
+  <div class="divider"></div>
+  <p class="section-sub">
+    I have a background in accounting, financial systems, and data analysis, and I'm passionate about where data science and AI are heading. Always happy to connect with others in the field.
+  </p>
+  <div class="contact-row">
+    <a href="mailto:pat3l.suraj@gmail.com" class="contact-btn light">✉️ &nbsp;Email Me</a>
+    <a href="https://www.linkedin.com/in/surajnpatel/" target="_blank" class="contact-btn outline">💼 &nbsp;LinkedIn</a>
+    <a href="https://github.com/surajpatl98" target="_blank" class="contact-btn outline">🐙 &nbsp;GitHub</a>
+  </div>
+</section>
+
+<footer>© 2026 Suraj Patel · Dallas, TX</footer>
+
+</body>
+</html>
